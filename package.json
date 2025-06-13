@@ -2,10 +2,11 @@
 	"name": "back-server",
 	"version": "1.0.0",
 	"description": "Back Server",
-	"main": "src/index.ts",
+	"main": "dist/index.js",
 	"scripts": {
 		"start": "ts-node-dev --respawn --transpile-only src/index.ts",
-		"test": "jest"
+		"test": "jest",
+		"build": "tsc"
 	},
 	"keywords": [],
 	"author": "",
