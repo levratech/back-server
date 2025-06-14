@@ -29,7 +29,7 @@ app.post('/log', (req, res) => {
 			console.error('Failed to write to log:', err)
 			return res.status(500).send('Failed to log')
 		}
-		res.send('Logged')
+		res.json({ status: 'ok' })
 	})
 })
 
