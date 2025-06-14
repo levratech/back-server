@@ -15,10 +15,15 @@ app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*')
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
 	res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-	if (req.method === 'OPTIONS') {
-		return res.sendStatus(204)
-	}
 	next()
+})
+
+// Global OPTIONS handler for CORS preflight requests
+app.options('*', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*')
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+	res.sendStatus(204)
 })
 
 app.get('/', (req, res) => {
