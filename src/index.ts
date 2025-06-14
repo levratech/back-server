@@ -7,7 +7,7 @@ const logFilePath = path.join(__dirname, '..', 'log.txt')
 if (!fs.existsSync(logFilePath)) {
 	fs.writeFileSync(logFilePath, '', 'utf8')
 }
-const PORT = Number(process.env.PORT) || 80
+const PORT = Number(process.env.PORT) || 3000
 
 app.use(express.json())
 
