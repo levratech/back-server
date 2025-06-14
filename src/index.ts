@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import express from 'express'
+import cors from 'cors'
 
 const app = express()
 const logFilePath = path.join(__dirname, '..', 'log.txt')
@@ -11,20 +12,13 @@ const PORT = Number(process.env.PORT) || 3000
 
 app.use(express.json())
 
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-	next()
-})
-
-// Global OPTIONS handler for CORS preflight requests
-app.options('*', (req, res) => {
-	res.setHeader('Access-Control-Allow-Origin', '*')
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-	res.sendStatus(204)
-})
+app.use(
+	cors({
+		origin: 'https://class.levratech.com',
+		methods: ['GET', 'POST', 'OPTIONS'],
+		allowedHeaders: ['Content-Type'],
+	})
+)
 
 app.get('/', (req, res) => {
 	res.send('HOWDY')
